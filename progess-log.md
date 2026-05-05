@@ -15,3 +15,8 @@ A day-by-day log of development decisions, features, and desing evolution.
     - `lib/`: Core utilities
     - `types/`: All Typescript types
     - `features/`: Feature-based logic
+- Setup Supabase scaffold
+- Installed Supabase Auth helpers for session management
+- Created Supabase browser client
+- Created basic auth pages (`signup`, `login`)
+    - Tested and ensured database users updated
