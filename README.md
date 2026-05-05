@@ -14,7 +14,7 @@ This project is being built to strengthen backend, full-stack architecture, and 
 ### Authentication
 
 - [ ] Secure user sign-up and login
-- [ ] Each user has isolated
+- [ ] Each user has isolated trade data
 
 ### Trade Management
 
