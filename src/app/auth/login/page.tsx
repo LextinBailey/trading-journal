@@ -21,6 +21,57 @@ export default function LoginPage() {
 
     return (
         <div>
+            {/* Auth Card */}
+            <div className="auth-card">
+                
+                {/* OAuth Buttons (Future Addition)
+                    <div className="flex flex-col gap-3">
+                    <button className="oauth-btn">
+                        <span className="text-base">⌘</span>
+                        Sign in with Github
+                    </button>
+                    <button className="oauth-btn">
+                        <span className="text-base font-bold text-blue-500">G</span>
+                        Sign in with Google
+                    </button>
+                    </div>
+        
+                    <hr className="auth-divider" />
+                */}
+                
+                {/* Email */}
+                <div className="flex flex-col gap-1.5">
+                <label className="field-label">Email address</label>
+                <input
+                    type="email"
+                    placeholder="Your email address"
+                    className="auth-input"
+                />
+                </div>
+        
+                {/* Password */}
+                <div className="flex flex-col gap-1.5">
+                <label className="field-label">Your Password</label>
+                <input
+                    type="password"
+                    placeholder="Your password"
+                    className="auth-input"
+                />
+                </div>
+        
+                <button 
+                className="signin-btn"
+                //onClick={() => router.push("/dashboard")}
+                >
+                Sign in
+                </button>
+        
+                <div className="flex flex-col items-center gap-1.5">
+                <a href="#" className="auth-link">Forgot your password?</a>
+                <a href="#" className="auth-link">Don't have an account? Sign up</a>
+                </div>
+        
+            </div>
             <h1>Login</h1>
 
             <input

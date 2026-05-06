@@ -1,26 +1,143 @@
 @import "tailwindcss";
-
+ 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #141414;
+  --foreground: rgba(255, 255, 255, 0.87);
+  --color-bg: #141414;
+  --color-surface: #1c1c1c;
+  --color-surface-raised: #222222;
+  --color-border: rgba(255, 255, 255, 0.10);
+  --color-muted-bg: rgba(255, 255, 255, 0.06);
+  --color-text-dark: rgba(255, 255, 255, 0.87);
+  --color-text-muted: rgba(255, 255, 255, 0.45);
+  --color-accent: #e8e8e8;
+  --color-accent-text: #141414;
 }
-
+ 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+ 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+ 
+.auth-page, .landing-page {
+  @apply min-h-screen flex flex-col items-center px-5 py-10;
+  background-color: var(--color-bg);
+  font-family: var(--font-geist-sans), sans-serif;
+}
+ 
+.header-card {
+  @apply w-full max-w-6xl rounded-2xl p-8 mb-8;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+}
+ 
+.header-inner {
+  @apply flex justify-between items-end;
+}
+ 
+.eyebrow {
+  @apply text-xs uppercase tracking-widest mb-2.5;
+  color: var(--color-text-muted);
+}
+ 
+.page-title {
+  @apply text-5xl font-bold leading-tight mb-3;
+  color: var(--color-text-dark);
+}
+ 
+.page-subtitle {
+  @apply text-sm;
+  color: var(--color-text-muted);
+}
+ 
+.dark-mode-btn {
+  @apply flex-shrink-0 ml-6 rounded-full px-4 py-2.5 text-sm cursor-pointer border-0;
+  background-color: var(--color-muted-bg);
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border);
+}
+ 
+.dark-mode-btn:hover {
+  background-color: rgba(255, 255, 255, 0.10);
+  color: var(--color-text-dark);
+}
+ 
+.auth-card, .landing-card {
+  @apply w-full max-w-sm rounded-2xl px-10 py-9 flex flex-col gap-4;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+}
+ 
+.oauth-btn {
+  @apply flex items-center justify-center gap-2.5 w-full rounded-full px-5 py-3 text-sm cursor-pointer bg-transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-dark);
+}
+ 
+.oauth-btn:hover {
+  background-color: var(--color-muted-bg);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+ 
+.auth-divider {
+  @apply border-0 my-1;
+  border-top: 1px solid var(--color-border);
+}
+ 
+.field-label {
+  @apply text-xs;
+  color: var(--color-text-muted);
+}
+ 
+.auth-input {
+  @apply w-full rounded-xl px-3.5 py-3 text-sm outline-none;
+  background-color: var(--color-muted-bg);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-dark);
+}
+ 
+.auth-input::placeholder {
+  color: rgba(255, 255, 255, 0.25);
+}
+ 
+.auth-input:focus {
+  border-color: rgba(255, 255, 255, 0.35);
+  background-color: var(--color-surface-raised);
+}
+ 
+.signin-btn {
+  @apply w-full rounded-full py-3.5 text-sm font-semibold border-0 cursor-pointer mt-1;
+  background-color: var(--color-accent);
+  color: var(--color-accent-text);
+}
+ 
+.signin-btn:hover {
+  background-color: #cfcfcf;
+}
+
+.login-link, .signup-link {
+  @apply block w-full text-center rounded-full py-3.5 text-sm font-semibold border-0 cursor-pointer mt-1 no-underline;
+  background-color: var(--color-accent);
+  color: var(--color-accent-text);
+}
+
+.login-link:hover, .signup-link:hover {
+  background-color: #cfcfcf;
+}
+ 
+.auth-link {
+  @apply text-xs underline;
+  color: var(--color-text-muted);
+}
+ 
+.auth-link:hover {
+  color: var(--color-text-dark);
 }

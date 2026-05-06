@@ -28,7 +28,7 @@ A day-by-day log of development decisions, features, and desing evolution.
         - Users can view their own trades
     - Enforcing rules at the database level
 
-## Day 2 (May 6, 2026): Trade Insertion, Trade Fetch + Display, Statistics
+## Day 2 (May 6, 2026): Trade Insertion, Trade Fetch + Display, Statistics, Landing Page
 
 - Implemented trade creation flow (`/trades/new`)
     - Retrieves authenticated user via Supabase session
@@ -40,3 +40,4 @@ A day-by-day log of development decisions, features, and desing evolution.
     - Retrieves users trades from PostgreSQL database
     - Updates `trades` state
 - Derived `totalPnl` & `winRate` data from `trades` state
+- Added landing page with navigation to `/auth/login` and `/auth/signup`
