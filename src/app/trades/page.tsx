@@ -28,20 +28,31 @@ export default function ViewTradePage() {
         }
     };
 
+    const totalPnl = trades.reduce((sum, trade) => sum + trade.pnl, 0);
+    const winCount = (trades.filter(trade => trade.result === "win")).length;
+    const winRate = trades.length > 0 ?  Math.round((winCount / trades.length) * 100) : 0;
+
     return (
         <div>
-            {trades.length > 0 ? (
-                trades.map((trade) => (
-                    <div key={trade.id}>
-                        {trade.pnl}
-                        {trade.result}
-                        {trade.notes}
-                        {trade.created_at}
-                    </div>
-                ))
-            ) : (
-                <span>No Trades</span>
-            )}
+            <div>
+                <h1>Total PNL: ${totalPnl}</h1>
+                <h1>Win Rate: {winRate}%</h1>
+            </div>
+            <div>
+                {trades.length > 0 ? (
+                    trades.map((trade) => (
+                        <div key={trade.id}>
+                            {trade.pnl}
+                            {trade.result}
+                            {trade.notes}
+                            {trade.created_at}
+                        </div>
+                    ))
+                ) : (
+                    <span>No Trades</span>
+                )}
+            </div>
+            
         </div>
     );
 }
