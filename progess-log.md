@@ -28,9 +28,14 @@ A day-by-day log of development decisions, features, and desing evolution.
         - Users can view their own trades
     - Enforcing rules at the database level
 
-## Day 2 (May 6, 2026): Trade Insertion
+## Day 2 (May 6, 2026): Trade Insertion, Trade Fetch + Display
 
 - Implemented trade creation flow (`/trades/new`)
     - Retrieves authenticated user via Supabase session
     - Inserts trade into PostgreSQL with `user_id` attached
     - Enforced ownership using Row Level Security (RLS)
+- Defined `Trade` type
+- Implemented full read pipeline:
+    - Relies on RLS instead of filtering
+    - Retrieves users trades from PostgreSQL database
+    - Updates `trades` state
