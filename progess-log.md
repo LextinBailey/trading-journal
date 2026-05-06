@@ -2,7 +2,7 @@
 
 A day-by-day log of development decisions, features, and desing evolution.
 
-## Day 1 (May 5, 2026): Initial Setup
+## Day 1 (May 5, 2026): Initial Setup, Supabase Setup, Auth Pages, Table + RLS Policies
 
 - Inital Setup:
     - Frontend: 
@@ -20,3 +20,17 @@ A day-by-day log of development decisions, features, and desing evolution.
 - Created Supabase browser client
 - Created basic auth pages (`signup`, `login`)
     - Tested and ensured database users updated
+- Created a `trades` table
+- Added 2 RLS policies to the `trades` table
+    - INSERT
+        - Users can insert their own trades
+    - SELECT
+        - Users can view their own trades
+    - Enforcing rules at the database level
+
+## Day 2 (May 6, 2026): Trade Insertion
+
+- Implemented trade creation flow (`/trades/new`)
+    - Retrieves authenticated user via Supabase session
+    - Inserts trade into PostgreSQL with `user_id` attached
+    - Enforced ownership using Row Level Security (RLS)

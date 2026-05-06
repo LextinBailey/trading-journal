@@ -34,6 +34,23 @@ This project is being built to strengthen backend, full-stack architecture, and 
 - [ ] Win rate
 - [ ] Total PNL
 
+## 📊 Databse Schema
+
+### trades table
+
+- id (uuid, primary key)
+- user_id (uuid, required)
+- pnl (float8, required)
+- result (text, required)
+- notes (text, optional)
+- mistake (text, optional)
+- created_at (timestamp, default now())
+
+### RLS Policies
+
+- INSERT: `auth.id() = user_id`
+- SELECT: `auth.id() = user_id`
+
 ## 💻 Tech Stack (Planned)
 
 ### Frontend
