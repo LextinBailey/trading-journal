@@ -42,7 +42,7 @@ A day-by-day log of development decisions, features, and design evolution.
 - Derived `totalPnl` & `winRate` data from `trades` state
 - Added landing page with navigation to `/auth/login` and `/auth/signup`
 
-## Day 3 (May 7, 2026): Server-Side Auth Protection, Supabase SSR Refactor, Dashboard Route Guard
+## Day 3 (May 7, 2026): Server-Side Auth Protection, Supabase SSR Refactor, Dashboard Route Guard, Server-Side Data Fetching
 
 - Implemented server-side authentication guard for `/dashboard`
     - Enforced authentication before page render using Supabase server client
@@ -57,3 +57,6 @@ A day-by-day log of development decisions, features, and design evolution.
 - Improved understanding of Next.js App Router execution model
     - Differentiated between client-side rendering lifecycle vs server-side pre-render checks
     - Applied server-side redirect logic to prevent unauthorized dashboard access
+- Implemented server-side data fetching in `/dashboard`
+    - Fetched `trades` data before page render
+    - Used data-level security (RLS) to retrieve users trades only
