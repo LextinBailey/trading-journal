@@ -42,7 +42,7 @@ A day-by-day log of development decisions, features, and design evolution.
 - Derived `totalPnl` & `winRate` data from `trades` state
 - Added landing page with navigation to `/auth/login` and `/auth/signup`
 
-## Day 3 (May 7, 2026): Server-Side Auth Protection, Supabase SSR Refactor, Dashboard Route Guard, Server-Side Data Fetching
+## Day 3 (May 7, 2026): Server-Side Auth Protection, Supabase SSR Refactor, Dashboard Route Guard, Server-Side Data Fetching, Backend-Derived Analytics
 
 - Implemented server-side authentication guard for `/dashboard`
     - Enforced authentication before page render using Supabase server client
@@ -60,3 +60,6 @@ A day-by-day log of development decisions, features, and design evolution.
 - Implemented server-side data fetching in `/dashboard`
     - Fetched `trades` data before page render
     - Used data-level security (RLS) to retrieve users trades only
+- Added backend-derived analytics layer `/lib/stats/trades.ts`
+    - Implemented reusable business logic module
+    - Replaced client-side data architecture with server-side (scalable & secure)

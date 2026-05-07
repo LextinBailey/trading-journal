@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 import { createServerClientClient } from "@/lib/supabase/server";
+import { calculateTradeStats } from "@/lib/stats/trades";
 
 export default async function DashboardPage() {
     const supabase = await createServerClientClient();
@@ -16,9 +17,17 @@ export default async function DashboardPage() {
         throw new Error("Failed to fetch trades");
     }
 
+    const stats = calculateTradeStats(trades || []);
+
     return (
         <div>
             <h1>Dashboard</h1>
+
+            <h2>Stats</h2>
+
+            <p>Total PNL: ${stats.totalPnl}</p>
+            <p>Win Rate: {(stats.winRate * 100).toFixed(1)}%</p>
+            <p>Total Trades: {stats.totalTrades}</p>
 
             <h2>Your Trades</h2>
 
