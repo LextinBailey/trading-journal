@@ -119,13 +119,13 @@ body {
   background-color: var(--color-surface-raised);
 }
  
-.signin-btn {
-  @apply w-full rounded-full py-3.5 text-sm font-semibold border-0 cursor-pointer mt-1;
+.auth-btn {
+  @apply w-full rounded-full py-3.5 text-sm font-semibold border-0 cursor-pointer mt-1 appearance-none;
   background-color: var(--color-accent);
   color: var(--color-accent-text);
 }
  
-.signin-btn:hover {
+.auth-btn:hover {
   background-color: #cfcfcf;
 }
 
@@ -146,4 +146,9 @@ body {
  
 .auth-link:hover {
   color: var(--color-text-dark);
+}
+
+.message {
+  @apply text-xs;
+  color: var(--color-text-muted);
 }

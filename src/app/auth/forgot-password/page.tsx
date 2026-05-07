@@ -1,28 +1,20 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase/client";
 import Link from "next/link";
 
-export default function SignUpPage() {
-    const router = useRouter();
-
+export default function ForgotPasswordPage() {
     const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [message, setMessage] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
 
-    async function handleSignUp() {
+    async function handleSendEmail() {
+        setMessage("");
         setErrorMessage("");
 
-        if (password.length < 8) {
-            setErrorMessage("Password must be 8 characters or longer.");
-            return;
-        }
-
-        const { error } = await supabase.auth.signUp({
-            email,
-            password,
+        const { error } = await supabase.auth.resetPasswordForEmail(email, {
+            redirectTo: "http://localhost:3000/auth/reset-password", // Change when deploying
         });
 
         if (error) {
@@ -30,13 +22,14 @@ export default function SignUpPage() {
             return;
         }
 
-        router.replace("/dashboard");
+        setMessage("If an account exists, a reset email has been sent.");
     }
 
     return (
         <div className="auth-page">
             {/* Auth Card */}
-            <div className="auth-card">   
+            <div className="auth-card">
+                
                 {/* Email */}
                 <div className="flex flex-col gap-1.5">
                     <label className="field-label">Email address</label>
@@ -49,25 +42,17 @@ export default function SignUpPage() {
                     />
                 </div>
         
-                {/* Password */}
-                <div className="flex flex-col gap-1.5">
-                    <label className="field-label">Create a password</label>
-                    <input
-                        type="password"
-                        placeholder="Your password"
-                        value={password}
-                        className="auth-input"
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                </div>
-        
                 <button 
                     type="button"
                     className="auth-btn"
-                    onClick={handleSignUp}
+                    onClick={handleSendEmail}
                 >
-                    Sign up
+                    Send email
                 </button>
+
+                {message && (
+                    <p className=" flex flex-col items-center message">{message}</p>
+                )}
 
                 {errorMessage && (
                     <p className=" flex flex-col items-center message">{errorMessage}</p>

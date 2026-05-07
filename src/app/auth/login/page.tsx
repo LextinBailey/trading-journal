@@ -10,15 +10,18 @@ export default function LoginPage() {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
 
     async function handleLogin() {
+        setErrorMessage("");
+
         const { error } = await supabase.auth.signInWithPassword({
             email,
             password,
         });
 
         if (error) {
-            console.log(error.message);
+            setErrorMessage("Something went wrong. Please try again.");
             return;
         }
 
@@ -59,7 +62,7 @@ export default function LoginPage() {
         
                 {/* Password */}
                 <div className="flex flex-col gap-1.5">
-                    <label className="field-label">Your Password</label>
+                    <label className="field-label">Your password</label>
                     <input
                         type="password"
                         placeholder="Your password"
@@ -71,14 +74,18 @@ export default function LoginPage() {
         
                 <button 
                     type="button"
-                    className="signin-btn"
+                    className="auth-btn"
                     onClick={handleLogin}
                 >
                     Sign in
                 </button>
+
+                {errorMessage && (
+                    <p className=" flex flex-col items-center message">{errorMessage}</p>
+                )}
         
                 <div className="flex flex-col items-center gap-1.5">
-                    <Link href="#" className="auth-link">Forgot your password?</Link>
+                    <Link href="/auth/forgot-password" className="auth-link">Forgot your password?</Link>
                     <Link href="/auth/signup" className="auth-link">Don't have an account? Sign up</Link>
                 </div>
             </div>

@@ -42,7 +42,7 @@ A day-by-day log of development decisions, features, and design evolution.
 - Derived `totalPnl` & `winRate` data from `trades` state
 - Added landing page with navigation to `/auth/login` and `/auth/signup`
 
-## Day 3 (May 7, 2026): Server-Side Auth Protection, Supabase SSR Refactor, Dashboard Route Guard, Server-Side Data Fetching, Backend-Derived Analytics, Login/Signup
+## Day 3 (May 7, 2026): Server-Side Auth Protection, Supabase SSR Refactor, Dashboard Route Guard, Server-Side Data Fetching, Backend-Derived Analytics, Login/Signup, Forgot & Reset Password
 
 - Implemented server-side authentication guard for `/dashboard`
     - Enforced authentication before page render using Supabase server client
@@ -64,3 +64,13 @@ A day-by-day log of development decisions, features, and design evolution.
     - Implemented reusable business logic module
     - Replaced client-side data architecture with server-side (scalable & secure)
 - Improved login/signup pages & routed correctly
+- Implemented forgot password flow using Supabase Auth
+    - Created `/auth/forgot-password` page
+    - Added password reset email request handling via `resetPasswordForEmail`
+    - Configured secure reset redirect flow to `/auth/reset-password`
+    - Implemented generic success messaging to avoid leaking account existence
+- Implemented reset password flow
+    - Created `/auth/reset-password` page
+    - Added password update handling via `supabase.auth.updateUser`
+    - Added client-side password confirmation validation
+    - Redirects authenticated users after successful password reset
