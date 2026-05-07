@@ -1,10 +1,10 @@
 # Progress Log
 
-A day-by-day log of development decisions, features, and desing evolution.
+A day-by-day log of development decisions, features, and design evolution.
 
 ## Day 1 (May 5, 2026): Initial Setup, Supabase Setup, Auth Pages, Table + RLS Policies
 
-- Inital Setup:
+- Initial Setup:
     - Frontend: 
         - Framework: Next.js
         - Language: TypeScript
@@ -41,3 +41,19 @@ A day-by-day log of development decisions, features, and desing evolution.
     - Updates `trades` state
 - Derived `totalPnl` & `winRate` data from `trades` state
 - Added landing page with navigation to `/auth/login` and `/auth/signup`
+
+## Day 3 (May 7, 2026): Server-Side Auth Protection, Supabase SSR Refactor, Dashboard Route Guard
+
+- Implemented server-side authentication guard for `/dashboard`
+    - Enforced authentication before page render using Supabase server client
+    - Redirects unauthenticated users to `/auth/login` using `next/navigation`
+- Refactored Supabase server client architecture 
+    - Implemented `createServerClientClient()` wrapper using `@supabase/ssr`
+    - Integrated `cookies()` from `next/headers` for session handling
+    - Configured cookie `getAll` and `setAll` methods for SSR authentication flow
+- Separated client vs server Supabase responsibilites
+    - Browser client handles authentication across (login/signup, client-side requests)
+    - Server client handles secure session validation and protected route access
+- Improved understanding of Next.js App Router execution model
+    - Differentiated between client-side rendering lifecycle vs server-side pre-render checks
+    - Applied server-side redirect logic to prevent unauthorized dashboard access
