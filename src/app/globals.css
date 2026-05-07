@@ -27,8 +27,14 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
  
-.auth-page, .landing-page {
+.landing-page {
   @apply min-h-screen flex flex-col items-center px-5 py-10;
+  background-color: var(--color-bg);
+  font-family: var(--font-geist-sans), sans-serif;
+}
+
+.auth-page {
+  @apply min-h-screen flex flex-col items-center justify-center px-5;
   background-color: var(--color-bg);
   font-family: var(--font-geist-sans), sans-serif;
 }

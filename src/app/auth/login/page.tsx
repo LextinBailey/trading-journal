@@ -1,14 +1,18 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase/client";
+import Link from "next/link";
 
 export default function LoginPage() {
+    const router = useRouter();
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
     async function handleLogin() {
-        const { data, error } = await supabase.auth.signInWithPassword({
+        const { error } = await supabase.auth.signInWithPassword({
             email,
             password,
         });
@@ -17,10 +21,12 @@ export default function LoginPage() {
             console.log(error.message);
             return;
         }
+
+        router.replace("/dashboard");
     }
 
     return (
-        <div>
+        <div className="auth-page">
             {/* Auth Card */}
             <div className="auth-card">
                 
@@ -41,53 +47,41 @@ export default function LoginPage() {
                 
                 {/* Email */}
                 <div className="flex flex-col gap-1.5">
-                <label className="field-label">Email address</label>
-                <input
-                    type="email"
-                    placeholder="Your email address"
-                    className="auth-input"
-                />
+                    <label className="field-label">Email address</label>
+                    <input
+                        type="email"
+                        placeholder="Your email address"
+                        value={email}
+                        className="auth-input"
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
                 </div>
         
                 {/* Password */}
                 <div className="flex flex-col gap-1.5">
-                <label className="field-label">Your Password</label>
-                <input
-                    type="password"
-                    placeholder="Your password"
-                    className="auth-input"
-                />
+                    <label className="field-label">Your Password</label>
+                    <input
+                        type="password"
+                        placeholder="Your password"
+                        value={password}
+                        className="auth-input"
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
                 </div>
         
                 <button 
-                className="signin-btn"
-                //onClick={() => router.push("/dashboard")}
+                    type="button"
+                    className="signin-btn"
+                    onClick={handleLogin}
                 >
-                Sign in
+                    Sign in
                 </button>
         
                 <div className="flex flex-col items-center gap-1.5">
-                <a href="#" className="auth-link">Forgot your password?</a>
-                <a href="#" className="auth-link">Don't have an account? Sign up</a>
+                    <Link href="#" className="auth-link">Forgot your password?</Link>
+                    <Link href="/auth/signup" className="auth-link">Don't have an account? Sign up</Link>
                 </div>
-        
             </div>
-            <h1>Login</h1>
-
-            <input
-                placeholder="email"
-                onChange={(e) => setEmail(e.target.value)}
-            />
-
-            <input 
-                placeholder="password"
-                type="password"
-                onChange={(e) => setPassword(e.target.value)}
-            />
-
-            <button onClick={handleLogin}>
-                Login
-            </button>
         </div>
     );
 }
