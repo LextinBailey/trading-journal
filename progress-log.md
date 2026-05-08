@@ -74,3 +74,19 @@ A day-by-day log of development decisions, features, and design evolution.
     - Added password update handling via `supabase.auth.updateUser`
     - Added client-side password confirmation validation
     - Redirects authenticated users after successful password reset
+
+## Day 4 (May 8, 2026): Cumulative PNL
+
+- Added cumulative PNL business logic layer (`/lib/stats/trade-pnl.ts`)
+    - Implemented transformation pipeline for chart-ready anayltics data
+    - Sorted trades chronologically using `created_at`
+    - Calculated running/cumulative PNL values across trade history
+    - Generated visualization-friendly data structure for Recharts integration
+- Created shared `CumulativePnl` TypeScript type (`/types/cumulative-pnl.ts`)
+    - Defined reusable chart data contract
+    - Shared type across business logic and frontend visualization layer
+    - Improved type safety for chart rendering pipeline
+- Began chart visualization architecture
+    - Separated server-side analytics generation from client-side chart rendering
+    - Passed derived chart data into dedicated client chart component via props
+    - Continued enforcing separation between business logic and presentation layer

@@ -1,6 +1,8 @@
 import { redirect } from "next/navigation";
 import { createServerClientClient } from "@/lib/supabase/server";
 import { calculateTradeStats } from "@/lib/stats/trades";
+import { calculateCumulativePnl } from "@/lib/stats/cumulative-pnl";
+import StatsChart from "./stats-charts";
 
 export default async function DashboardPage() {
     const supabase = await createServerClientClient();
@@ -18,6 +20,7 @@ export default async function DashboardPage() {
     }
 
     const stats = calculateTradeStats(trades || []);
+    const chartData = calculateCumulativePnl(trades || []);
 
     return (
         <div>
@@ -39,6 +42,8 @@ export default async function DashboardPage() {
                     <p>{trade.result}</p>
                 </div>
             ))}
+
+            <StatsChart chartData={chartData} />
         </div>
     );
 }

@@ -81,7 +81,7 @@ export default function LoginPage() {
                 </button>
 
                 {errorMessage && (
-                    <p className=" flex flex-col items-center message">{errorMessage}</p>
+                    <p className="flex flex-col items-center message">{errorMessage}</p>
                 )}
         
                 <div className="flex flex-col items-center gap-1.5">

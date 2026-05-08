@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase/client";
+import Link from "next/link";
 
 export default function ResetPasswordPage() {
     const router = useRouter();
@@ -71,7 +72,7 @@ export default function ResetPasswordPage() {
                 </button>
 
                 {errorMessage && (
-                    <p className=" flex flex-col items-center message">{errorMessage}</p>
+                    <p className="flex flex-col items-center message">{errorMessage}</p>
                 )}
             </div>
         </div>
