@@ -152,3 +152,50 @@ body {
   @apply text-xs;
   color: var(--color-text-muted);
 }
+
+.dashboard-page {
+  @apply min-h-screen flex flex-col items-center px-5 py-12;
+  background-color: var(--color-bg);
+  font-family: var(--font-geist-sans), sans-serif;
+}
+ 
+.dashboard-title {
+  @apply text-2xl font-semibold mb-8;
+  color: var(--color-text-dark);
+  letter-spacing: -0.01em;
+}
+ 
+/* Stats container */
+.stats-row {
+  @apply w-full max-w-2xl flex items-center rounded-2xl px-8 py-6 mb-5;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+}
+ 
+.stat-card {
+  @apply flex-1 flex flex-col items-center gap-1.5;
+}
+ 
+.stat-label {
+  @apply text-xs uppercase tracking-widest;
+  color: var(--color-text-muted);
+}
+ 
+.stat-value {
+  @apply text-2xl font-semibold;
+  color: var(--color-text-dark);
+  letter-spacing: -0.02em;
+}
+ 
+.stat-divider {
+  @apply self-stretch mx-6;
+  width: 1px;
+  background-color: var(--color-border);
+}
+ 
+/* Chart card */
+.chart-card {
+  @apply w-full max-w-2xl rounded-2xl px-8 py-7;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+}

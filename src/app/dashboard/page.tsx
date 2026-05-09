@@ -22,28 +22,50 @@ export default async function DashboardPage() {
     const stats = calculateTradeStats(trades || []);
     const chartData = calculateCumulativePnl(trades || []);
 
+    const pnlPositive = stats.totalPnl >= 0;
+
     return (
-        <div>
-            <h1>Dashboard</h1>
-
-            <h2>Stats</h2>
-
-            <p>Total PNL: ${stats.totalPnl}</p>
-            <p>Win Rate: {(stats.winRate * 100).toFixed(1)}%</p>
-            <p>Total Trades: {stats.totalTrades}</p>
-
-            <h2>Your Trades</h2>
-
-            {trades?.length === 0 && <p>No trades yet</p>}
-
-            {trades?.map((trade) => (
-                <div key={trade.id}>
-                    <p>{trade.pnl}</p>
-                    <p>{trade.result}</p>
+        <div className="dashboard-page">
+ 
+            <h1 className="dashboard-title">Dashboard</h1>
+ 
+            {/* Stats Row */}
+            <div className="stats-row">
+                <div className="stat-card">
+                    <span className="stat-label">Total PnL</span>
+                    <span
+                        className="stat-value"
+                        style={{ color: pnlPositive ? "#4ade80" : "#f87171" }}
+                    >
+                        {pnlPositive ? "+" : ""}${stats.totalPnl.toFixed(2)}
+                    </span>
                 </div>
-            ))}
-
-            <StatsChart chartData={chartData} />
+ 
+                <div className="stat-divider" />
+ 
+                <div className="stat-card">
+                    <span className="stat-label">Total Trades</span>
+                    <span className="stat-value">{stats.totalTrades}</span>
+                </div>
+ 
+                <div className="stat-divider" />
+ 
+                <div className="stat-card">
+                    <span className="stat-label">Win Rate</span>
+                    <span className="stat-value">{(stats.winRate * 100).toFixed(1)}%</span>
+                </div>
+            </div>
+ 
+            {/* Chart */}
+            <div className="chart-card">
+                {trades?.length === 0 ? (
+                    <p className="message" style={{ textAlign: "center", padding: "2rem 0" }}>
+                        No trades yet — add your first trade to see your curve.
+                    </p>
+                ) : (
+                    <StatsChart chartData={chartData} />
+                )}
+            </div>
         </div>
     );
 }

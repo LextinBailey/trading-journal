@@ -90,3 +90,13 @@ A day-by-day log of development decisions, features, and design evolution.
     - Separated server-side analytics generation from client-side chart rendering
     - Passed derived chart data into dedicated client chart component via props
     - Continued enforcing separation between business logic and presentation layer
+
+## Day 5 (May 9, 2026): Dashboard Layout
+
+- Refactored dashboard statistics UI into dedicated card-based layout
+    - Added structured stats row for Total PNL, Total Trades, and Win Rate
+    - Improved dashboard readability through visual grouping and spacing
+    - Added conditional PNL coloring logic for positive vs negative performance
+- Added responsive chart container architecture
+    - Integrated `ResponsiveContainer` for adaptive chart sizing
+    - Separated layout sizing responsibilites from chart rendering logic
