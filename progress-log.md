@@ -99,4 +99,24 @@ A day-by-day log of development decisions, features, and design evolution.
     - Added conditional PNL coloring logic for positive vs negative performance
 - Added responsive chart container architecture
     - Integrated `ResponsiveContainer` for adaptive chart sizing
-    - Separated layout sizing responsibilites from chart rendering logic
+    - Separated layout sizing responsibilities from chart rendering logic
+
+## Day 6 (May 10, 2026): App Router Route Groups & Application Structure Refactor
+
+- Refactored Next.js App Router structure using route groups
+    - Added:
+        - `src/app/(app)`
+        - `src/app/(auth)`
+        - `src/app/(marketing)`
+    - Introduced logical route separation without affecting public URL structure
+- Separated application concerns by route responsibility
+    - `(marketing)`: public landing/marketing pages
+    - `(auth)`: authentication-related routes
+    - `(app)`: authenticated application routes
+- Moved landing page into `(marketing)` group
+    - Isolated public-facing entry flow from authenticated application architecture 
+- Moved authentication routes into `(auth)` group
+    - Centralized login/signup/password recovery route organization
+- Moved dashboard and trade routes into `(app)` group
+    - Established foundation for shared authentication layouts and protected application routing
+- Began transition toward scalable SaaS-style application structure using Next.js App Router conventions
