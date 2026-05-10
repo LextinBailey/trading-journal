@@ -1,4 +1,3 @@
-import { redirect } from "next/navigation";
 import { createServerClientClient } from "@/lib/supabase/server";
 import { calculateTradeStats } from "@/lib/stats/trades";
 import { calculateCumulativePnl } from "@/lib/stats/cumulative-pnl";
@@ -6,10 +5,6 @@ import StatsChart from "./stats-charts";
 
 export default async function DashboardPage() {
     const supabase = await createServerClientClient();
-
-    const { data: { user } } = await supabase.auth.getUser();
-
-    if (!user) redirect("/auth/login");
 
     const { data: trades, error } = await supabase
         .from("trades")

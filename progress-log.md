@@ -101,7 +101,7 @@ A day-by-day log of development decisions, features, and design evolution.
     - Integrated `ResponsiveContainer` for adaptive chart sizing
     - Separated layout sizing responsibilities from chart rendering logic
 
-## Day 6 (May 10, 2026): App Router Route Groups & Application Structure Refactor
+## Day 6 (May 10, 2026): App Router Route Groups & Application Structure Refactor, Centralized Auth Protection
 
 - Refactored Next.js App Router structure using route groups
     - Added:
@@ -120,3 +120,7 @@ A day-by-day log of development decisions, features, and design evolution.
 - Moved dashboard and trade routes into `(app)` group
     - Established foundation for shared authentication layouts and protected application routing
 - Began transition toward scalable SaaS-style application structure using Next.js App Router conventions
+- Centralized auth protection inside `src/app/(app)/layout.tsx`
+    - Prevented repeat auth checks
+    - Established shared authenticated layout system
+    - Removed auth logic from `/dashboard` since layout now protects routes globally
