@@ -128,8 +128,10 @@ A day-by-day log of development decisions, features, and design evolution.
     - Extracted navigation config for sidebar to render
     - Implemented `Sidebar` in app layout so every authenticated page gets the sidebar
 
-## Day 7 (May 11, 2026): Trade Form
+## Day 7 (May 11, 2026): Trade Form, Trades Page
 
 - Added shared trade form component `src/features/trades/components/trade-form.tsx`
     - Improved architecure by making `/trades/new` only responsible for routing logic
     - Established reusable form and validation
+- Added trades page
+    - Implemented: all trades, result, pnl, notes, created date, navigation flow

@@ -2,8 +2,11 @@
 
 import { useState } from "react";
 import { supabase } from "@/lib/supabase/client";
+import { useRouter } from "next/navigation";
 
 export default function TradeForm() {
+    const router = useRouter();
+
     const [pnl, setPnl] = useState("");
     const [result, setResult] = useState("win");
     const [notes, setNotes] = useState("");
@@ -32,6 +35,8 @@ export default function TradeForm() {
             console.error("Insert error:", error.message);
             return;
         }
+
+        router.push("/trades");
     }
 
     return (
