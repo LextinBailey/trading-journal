@@ -415,6 +415,11 @@ body {
     font-weight: 600;
 }
 
-.view-link:hover {
+.view-link:hover, .edit-link:hover {
     text-decoration: underline;
+}
+
+.edit-link {
+    color: #d3d3db;
+    font-weight: 600;
 }

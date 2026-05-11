@@ -128,14 +128,33 @@ A day-by-day log of development decisions, features, and design evolution.
     - Extracted navigation config for sidebar to render
     - Implemented `Sidebar` in app layout so every authenticated page gets the sidebar
 
-## Day 7 (May 11, 2026): Trade Form, Trades Page, View Trade
+## Day 7 (May 11, 2026): Trade CRUD Expansion, Dynamic Routes, Shared Form Architecture
 
 - Added shared trade form component `src/features/trades/components/trade-form.tsx`
-    - Improved architecure by making `/trades/new` only responsible for routing logic
-    - Established reusable form and validation
-- Added trades page
-    - Implemented: all trades, result, pnl, notes, created date, navigation flow
-- Added view trade page `src/app/(app)/trades/[id]`
-    - Filtered trade by trade id
-    - Added `view` link in trade page
-- Learned that `params` is now async in Server Components
+    - Refactored trade creation flow into reusable feature-level form architecture
+    - Reduced page responsibility by separating route handling from form presentation/business logic
+    - Established reusable controlled form state for both create and edit trade workflows
+    - Centralized trade form UI and validation flow
+- Implemented trades index page `src/app/(app)/trades/page.tsx`
+    - Added server-side trade retrieval pipeline using Supabase
+    - Rendered trade history table with:
+        - result
+        - pnl
+        - notes
+        - created date
+    - Added navigation flow to trade creation and individual trade detail routes
+    - Implemented empty-state rendering for user without trades
+- Added dynamic trade detail route `src/app/(app)/trades/[id]/page.tsx`
+    - Implemented dynamic App Router route segment `[id]`
+    - Retrieved individual trades using parameterized route-based querying
+    - Enforced user-level data access through existing Supabse RLS policies
+    - Added trade detail visualization layer for individual trade inspection
+    - Added `View` navigation flow from trades table
+- Improved understanding of modern Next.js Server Component architecture
+    - Learned that `params` is now asynchronous in newer App Router implementations
+    - Updated dynamic route handling using awaited `params` access pattern
+- Added edit trade route `src/app/(app)/trades/[id]/edit/page.tsx`
+    - Implemented reusable edit workflow using shared `TradeForm`
+    - Prefilled form state using existing trade data
+    - Added database update flow using Supabase `.update()`
+    - Reused shared create/edit form architecture to reduce duplication and improve maintainability

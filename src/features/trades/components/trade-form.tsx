@@ -4,12 +4,25 @@ import { useState } from "react";
 import { supabase } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
 
-export default function TradeForm() {
+interface TradeFormProps {
+    initialData?: {
+        id?: number;
+        pnl: number;
+        result: string;
+        notes: string;
+    };
+}
+
+export default function TradeForm({
+    initialData
+}: TradeFormProps) {
+    const isEditing = !!initialData;
+
     const router = useRouter();
 
-    const [pnl, setPnl] = useState("");
-    const [result, setResult] = useState("win");
-    const [notes, setNotes] = useState("");
+    const [pnl, setPnl] = useState(initialData?.pnl?.toString() || "");
+    const [result, setResult] = useState(initialData?.result || "win");
+    const [notes, setNotes] = useState(initialData?.notes || "");
 
     async function handleSubmit() {
         const { data: userData } = await supabase.auth.getUser();
@@ -20,16 +33,31 @@ export default function TradeForm() {
             return;
         }
 
-        const { data, error } = await supabase
-            .from("trades")
-            .insert([
-                {
-                    user_id: user.id,
+        let response;
+
+        if (isEditing) {
+            response = await supabase
+                .from("trades")
+                .update({
                     pnl: parseFloat(pnl),
                     result,
                     notes,
-                },
-            ]);
+                })
+                .eq("id", initialData.id);
+        } else {
+            response = await supabase
+                .from("trades")
+                .insert([
+                    {
+                        user_id: user.id,
+                        pnl: parseFloat(pnl),
+                        result,
+                        notes,
+                    },
+                ]);
+        }
+
+        const { data, error } = response;
 
         if (error) {
             console.error("Insert error:", error.message);
@@ -86,7 +114,7 @@ export default function TradeForm() {
                         onClick={handleSubmit}
                         className="submit-button"
                     >
-                        Add Trade
+                        {isEditing ? "Update Trade" : "Add Trade"}
                     </button>
 
                 </div>

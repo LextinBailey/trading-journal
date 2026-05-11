@@ -45,7 +45,7 @@ export default async function TradesPage() {
                                 <th>PNL</th>
                                 <th>Notes</th>
                                 <th>View</th>
-                                {/* <th>Edit</th> */}
+                                <th>Edit</th>
                                 {/* <th>Delete</th> */}
                             </tr>
                         </thead>
@@ -90,11 +90,16 @@ export default async function TradesPage() {
                                             </Link>
                                         </td>
                                         
-                                        {/* 
-                                            <td>
+                                        <td>
+                                            <Link
+                                                href={`/trades/${trade.id}/edit`}
+                                                className="edit-link"
+                                            >
                                                 Edit
-                                            </td>
+                                            </Link>
+                                        </td>
 
+                                        {/* 
                                             <td>
                                                 Delete
                                             </td>
