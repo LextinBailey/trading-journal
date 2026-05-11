@@ -15,7 +15,6 @@ export default async function TradesPage() {
 
     return (
         <div className="trades-page">
-
             <div className="trades-header">
                 <div>
                     <h1 className="page-title">Trades</h1>
@@ -45,6 +44,7 @@ export default async function TradesPage() {
                                 <th>Result</th>
                                 <th>PNL</th>
                                 <th>Notes</th>
+                                <th>View</th>
                                 {/* <th>Edit</th> */}
                                 {/* <th>Delete</th> */}
                             </tr>
@@ -79,6 +79,15 @@ export default async function TradesPage() {
 
                                         <td>
                                             {trade.notes || "-"}
+                                        </td>
+
+                                        <td>
+                                            <Link
+                                                href={`/trades/${trade.id}`}
+                                                className="view-link"
+                                            >
+                                                View
+                                            </Link>
                                         </td>
                                         
                                         {/* 
