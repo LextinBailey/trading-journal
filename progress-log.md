@@ -153,16 +153,22 @@ A day-by-day log of development decisions, features, and design evolution.
 - Improved understanding of modern Next.js Server Component architecture
     - Learned that `params` is now asynchronous in newer App Router implementations
     - Updated dynamic route handling using awaited `params` access pattern
+- Added UPDATE RLS policy to the `trades` table
+    - Users can update their own trades
 - Added edit trade route `src/app/(app)/trades/[id]/edit/page.tsx`
     - Implemented reusable edit workflow using shared `TradeForm`
     - Prefilled form state using existing trade data
     - Added database update flow using Supabase `.update()`
     - Reused shared create/edit form architecture to reduce duplication and improve maintainability
 
-## Day 8 (May 12, 2026): DELETE
+## Day 8 (May 12, 2026): DELETE, Frontend Validation
 
 - Added DELETE RLS policy to the `trades` table
     - Users can delete their own trades
 - Added delete button component `src/features/trades/components/delete-button.tsx`
     - Separated server and client component responsibilites
     - Implemented confirmation and local loading state
+- Implemented loading state to 'Add' and 'Update'
+- Implemented frontend input validation
+    - Added required field checks
+    - Added basic type validation

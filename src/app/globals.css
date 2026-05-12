@@ -310,6 +310,7 @@ body {
     transition:
         transform 0.15s ease,
         opacity 0.2s ease;
+    @apply disabled:cursor-not-allowed disabled:opacity-50;
 }
 
 .submit-button:hover {

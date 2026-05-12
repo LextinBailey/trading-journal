@@ -23,48 +23,72 @@ export default function TradeForm({
     const [pnl, setPnl] = useState(initialData?.pnl?.toString() || "");
     const [result, setResult] = useState(initialData?.result || "win");
     const [notes, setNotes] = useState(initialData?.notes || "");
+    const [loading, setLoading] = useState(false);
 
     async function handleSubmit() {
-        const { data: userData } = await supabase.auth.getUser();
-        const user = userData.user;
+        if (loading) return;
 
-        if (!user) {
-            console.error("No user found");
+        if (!pnl.trim()) {
+            alert("PNL is required");
             return;
         }
 
-        let response;
+        const pnlValue = parseFloat(pnl);
 
-        if (isEditing) {
-            response = await supabase
-                .from("trades")
-                .update({
-                    pnl: parseFloat(pnl),
-                    result,
-                    notes,
-                })
-                .eq("id", initialData.id);
-        } else {
-            response = await supabase
-                .from("trades")
-                .insert([
-                    {
-                        user_id: user.id,
-                        pnl: parseFloat(pnl),
+        if (isNaN(pnlValue)) {
+            alert("PNL must be a valid number");
+            return;
+        }
+
+        try {
+            setLoading(true);
+
+            const { data: userData } = await supabase.auth.getUser();
+
+            const user = userData.user;
+
+            if (!user) {
+                console.error("No user found");
+                return;
+            }
+
+            let response;
+
+            if (isEditing) {
+                response = await supabase
+                    .from("trades")
+                    .update({
+                        pnl: pnlValue,
                         result,
                         notes,
-                    },
-                ]);
+                    })
+                    .eq("id", initialData.id);
+            } else {
+                response = await supabase
+                    .from("trades")
+                    .insert([
+                        {
+                            user_id: user.id,
+                            pnl: pnlValue,
+                            result,
+                            notes,
+                        },
+                    ]);
+            }
+
+            const { error } = response;
+
+            if (error) {
+                console.error("Trade submit error:", error.message);
+                return;
+            }
+
+            router.push("/trades");
+        } catch (error) {
+            console.error(error);
+        } finally {
+            setLoading(false);
         }
-
-        const { data, error } = response;
-
-        if (error) {
-            console.error("Insert error:", error.message);
-            return;
-        }
-
-        router.push("/trades");
     }
 
     return (
@@ -112,9 +136,17 @@ export default function TradeForm({
 
                     <button
                         onClick={handleSubmit}
+                        disabled={loading}
                         className="submit-button"
                     >
-                        {isEditing ? "Update Trade" : "Add Trade"}
+                        {loading
+                            ? isEditing
+                                ? "Updating..."
+                                : "Adding..."
+                            : isEditing
+                                ? "Update Trade"
+                                : "Add Trade"
+                        }
                     </button>
 
                 </div>
