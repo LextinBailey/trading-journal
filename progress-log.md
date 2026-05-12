@@ -158,3 +158,11 @@ A day-by-day log of development decisions, features, and design evolution.
     - Prefilled form state using existing trade data
     - Added database update flow using Supabase `.update()`
     - Reused shared create/edit form architecture to reduce duplication and improve maintainability
+
+## Day 8 (May 12, 2026): DELETE
+
+- Added DELETE RLS policy to the `trades` table
+    - Users can delete their own trades
+- Added delete button component `src/features/trades/components/delete-button.tsx`
+    - Separated server and client component responsibilites
+    - Implemented confirmation and local loading state

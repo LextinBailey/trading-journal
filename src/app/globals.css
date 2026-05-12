@@ -423,3 +423,7 @@ body {
     color: #d3d3db;
     font-weight: 600;
 }
+
+.delete-button {
+    @apply rounded-md bg-red-500 px-4 py-2 text-white transition hover:bg-red-600 disabled:cursor-not-allowed disabled:opacity-50;
+}

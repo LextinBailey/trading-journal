@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { createServerClientClient } from "@/lib/supabase/server";
+import DeleteButton from "@/features/trades/components/delete-button";
 
 interface TradePageProps {
     params: Promise<{
@@ -99,6 +100,8 @@ export default async function TradePage({
                         {trade.notes || "No notes provided."}
                     </p>
                 </div>
+
+                <DeleteButton id={trade.id} />
             </div>
         </div>
     );
