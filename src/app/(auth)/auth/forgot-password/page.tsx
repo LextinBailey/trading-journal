@@ -28,7 +28,7 @@ export default function ForgotPasswordPage() {
     return (
         <div className="auth-page">
             {/* Auth Card */}
-            <div className="auth-card">
+            <div className="card auth-card">
                 
                 {/* Email */}
                 <div className="flex flex-col gap-1.5">
@@ -37,14 +37,14 @@ export default function ForgotPasswordPage() {
                         type="email"
                         placeholder="Your email address"
                         value={email}
-                        className="auth-input"
+                        className="input-base"
                         onChange={(e) => setEmail(e.target.value)}
                     />
                 </div>
         
                 <button 
                     type="button"
-                    className="auth-btn"
+                    className="btn btn-primary btn-lg btn-pill auth-btn"
                     onClick={handleSendEmail}
                 >
                     Send email

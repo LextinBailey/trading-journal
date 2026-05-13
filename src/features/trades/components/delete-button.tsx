@@ -49,7 +49,7 @@ export default function DeleteButton({
         <button
             onClick={handleDelete}
             disabled={loading}
-            className="delete-button"
+            className="btn btn-danger btn-sm"
         >
             {loading ? "Deleting..." : "Delete Trade"}
         </button>

@@ -106,7 +106,7 @@ export default function TradeForm({
                             placeholder="0.00"
                             value={pnl}
                             onChange={(e) => setPnl(e.target.value)}
-                            className="trade-input"
+                            className="input-base trade-input"
                         />
                     </div>
 
@@ -116,7 +116,7 @@ export default function TradeForm({
                         <select
                             value={result}
                             onChange={(e) => setResult(e.target.value)}
-                            className="trade-input"
+                            className="input-base trade-input"
                         >
                             <option value="win">Win</option>
                             <option value="loss">Loss</option>
@@ -130,14 +130,14 @@ export default function TradeForm({
                             placeholder="What went well? What could improve?"
                             value={notes}
                             onChange={(e) => setNotes(e.target.value)}
-                            className="trade-input trade-textarea"
+                            className="input-base trade-textarea"
                         />
                     </div>
 
                     <button
                         onClick={handleSubmit}
                         disabled={loading}
-                        className="submit-button"
+                        className="btn btn-brand submit-button"
                     >
                         {loading
                             ? isEditing

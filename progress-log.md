@@ -161,7 +161,7 @@ A day-by-day log of development decisions, features, and design evolution.
     - Added database update flow using Supabase `.update()`
     - Reused shared create/edit form architecture to reduce duplication and improve maintainability
 
-## Day 8 (May 12, 2026): DELETE, Frontend Validation
+## Day 8 (May 12, 2026): DELETE, Frontend Validation, Trade Page UI
 
 - Added DELETE RLS policy to the `trades` table
     - Users can delete their own trades
@@ -172,3 +172,11 @@ A day-by-day log of development decisions, features, and design evolution.
 - Implemented frontend input validation
     - Added required field checks
     - Added basic type validation
+- Improved all trade pages UI
+
+## Day 9 (May 13, 2026): Stats Chart
+
+- Redesigned `stats-charts.tsx`
+    - Added clear trade and profit separation
+    - Added US dollar profit amounts 
+    - Implemented visual cumulative pnl

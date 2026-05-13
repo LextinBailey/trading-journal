@@ -25,7 +25,7 @@ export default function LandingPage() {
     <main className="landing-page">
  
       {/* Header Card */}
-      <div className="header-card">
+      <div className="card header-card">
         <div className="header-inner">
           <div>
             <h1 className="page-title">Trading Journal</h1>
@@ -40,16 +40,16 @@ export default function LandingPage() {
       </div>
  
       {/* Landing Card */}
-      <div className="landing-card">
+      <div className="card landing-card">
         <Link 
-          className="signup-link"
+          className="btn btn-primary btn-lg btn-pill signup-link"
           href="/auth/signup"
         >
           Sign Up
         </Link>
             
         <Link 
-          className="login-link"
+          className="btn btn-primary btn-lg btn-pilllogin-link"
           href="/auth/login"
         >
           Login

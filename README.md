@@ -13,26 +13,25 @@ This project is being built to strengthen backend, full-stack architecture, and 
 
 ### Authentication
 
-- [ ] Secure user sign-up and login
-- [ ] Each user has isolated trade data
+- [x] Secure user sign-up and login
+- [x] Each user has isolated trade data
 
 ### Trade Management
 
-- [ ] Add new trades with details such as:
+- [x] Add new trades with details such as:
     - Entry/exit info (basic)
     - Win/Loss status
     - Profit & Loss (PNL)
     - Notes
-    - Mistake tracking (dropdown + custom input)
 
 ### Trade History
 
-- [ ] View all past trades in a structured list
+- [x] View all past trades in a structured list
 
 ### Basic Statistics
 
-- [ ] Win rate
-- [ ] Total PNL
+- [x] Win rate
+- [x] Total PNL
 
 ## 📊 Databse Schema
 
@@ -94,6 +93,7 @@ Progress and development insights are tracked in `progress-log.md`.
 
 ## ⏱️ Future Improvements (Post-MVP)
 
+- Mistake tracking (dropdown + custom input)
 - Backtesting section
 - Prop firm tracker
 - Chart uploads

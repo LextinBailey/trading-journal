@@ -36,7 +36,7 @@ export default function SignUpPage() {
     return (
         <div className="auth-page">
             {/* Auth Card */}
-            <div className="auth-card">   
+            <div className="card auth-card">   
                 {/* Email */}
                 <div className="flex flex-col gap-1.5">
                     <label className="field-label">Email address</label>
@@ -44,7 +44,7 @@ export default function SignUpPage() {
                         type="email"
                         placeholder="Your email address"
                         value={email}
-                        className="auth-input"
+                        className="input-base"
                         onChange={(e) => setEmail(e.target.value)}
                     />
                 </div>
@@ -56,14 +56,14 @@ export default function SignUpPage() {
                         type="password"
                         placeholder="Your password"
                         value={password}
-                        className="auth-input"
+                        className="input-base"
                         onChange={(e) => setPassword(e.target.value)}
                     />
                 </div>
         
                 <button 
                     type="button"
-                    className="auth-btn"
+                    className="btn btn-primary btn-lg btn-pill auth-btn"
                     onClick={handleSignUp}
                 >
                     Sign up

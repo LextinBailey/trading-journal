@@ -25,7 +25,7 @@ export default async function TradesPage() {
 
                 <Link
                     href="/trades/new"
-                    className="add-trade-button"
+                    className="btn btn-brand btn-md"
                 >
                     + Add Trade
                 </Link>
@@ -46,7 +46,6 @@ export default async function TradesPage() {
                                 <th>Notes</th>
                                 <th>View</th>
                                 <th>Edit</th>
-                                {/* <th>Delete</th> */}
                             </tr>
                         </thead>
 
@@ -98,12 +97,6 @@ export default async function TradesPage() {
                                                 Edit
                                             </Link>
                                         </td>
-
-                                        {/* 
-                                            <td>
-                                                Delete
-                                            </td>
-                                        */}
                                     </tr>
                                 );
                             })}

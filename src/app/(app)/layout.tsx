@@ -21,7 +21,7 @@ export default async function AppLayout({
         <div className="app-layout">
             <Sidebar />
 
-            <main>
+            <main className="app-content">
                 {children}
             </main>
         </div>

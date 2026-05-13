@@ -29,80 +29,91 @@ export default async function TradePage({
     const pnlPositive = trade.pnl >= 0;
 
     return (
-        <div className="trade-page">
-            <div className="trade-page-header">
-                <div>
-                    <h1 className="page-title">
-                        Trade Details
-                    </h1>
+        <div className="dashboard-page">
 
-                    <p className="page-description">
-                        View trade information and notes.
-                    </p>
-                </div>
+            <div className="trade-page">
 
-                <Link
-                    href="/trades"
-                    className="back-button"
-                >
-                    Back
-                </Link>
-            </div>
-
-            <div className="trade-card">
-
-                <div className="trade-row">
-                    <span className="trade-label">
-                        Result
-                    </span>
-
-                    <span className="trade-value">
-                        {trade.result}
-                    </span>
-                </div>
-
-                <div className="trade-row">
-                    <span className="trade-label">
-                        PNL
-                    </span>
-
-                    <span
-                        className="trade-value"
-                        style={{
-                            color: pnlPositive
-                                ? "#4ade80"
-                                : "#f87171",
-                        }}
+                <div className="trade-page-header">
+                    <Link
+                        href="/trades"
+                        className="btn btn-md btn-muted"
                     >
-                        {pnlPositive ? "+" : ""}
-                        ${trade.pnl.toFixed(2)}
-                    </span>
+                        Back
+                    </Link>
                 </div>
 
-                <div className="trade-row">
-                    <span className="trade-label">
-                        Created
-                    </span>
+                <div className="trade-card">
 
-                    <span className="trade-value">
-                        {new Date(
-                            trade.created_at
-                        ).toLocaleDateString()}
-                    </span>
+                    <div>
+                        <h1 className="page-title">
+                            Trade Details
+                        </h1>
+
+                        <p className="page-description">
+                            View trade information and notes.
+                        </p>
+                    </div>
+
+                    <div className="trade-details">
+
+                        <div className="trade-row">
+                            <span className="trade-label">
+                                Result
+                            </span>
+
+                            <span className="trade-value">
+                                {trade.result}
+                            </span>
+                        </div>
+
+                        <div className="trade-row">
+                            <span className="trade-label">
+                                PNL
+                            </span>
+
+                            <span
+                                className="trade-value"
+                                style={{
+                                    color: pnlPositive
+                                        ? "#4ade80"
+                                        : "#f87171",
+                                }}
+                            >
+                                {pnlPositive ? "+" : ""}
+                                ${trade.pnl.toFixed(2)}
+                            </span>
+                        </div>
+
+                        <div className="trade-row">
+                            <span className="trade-label">
+                                Created
+                            </span>
+
+                            <span className="trade-value">
+                                {new Date(
+                                    trade.created_at
+                                ).toLocaleDateString()}
+                            </span>
+                        </div>
+
+                    </div>
+
+                    <div className="trade-notes">
+                        <span className="trade-label">
+                            Notes
+                        </span>
+
+                        <p className="trade-notes-text">
+                            {trade.notes || "No notes provided."}
+                        </p>
+                    </div>
+
+                    <DeleteButton id={trade.id} />
+
                 </div>
 
-                <div className="trade-notes">
-                    <span className="trade-label">
-                        Notes
-                    </span>
-
-                    <p>
-                        {trade.notes || "No notes provided."}
-                    </p>
-                </div>
-
-                <DeleteButton id={trade.id} />
             </div>
+
         </div>
     );
 }

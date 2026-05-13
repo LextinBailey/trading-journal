@@ -40,7 +40,7 @@ export default function ResetPasswordPage() {
     return (
         <div className="auth-page">
             {/* Auth Card */}
-            <div className="auth-card">
+            <div className="card auth-card">
                 
                 {/* Email */}
                 <div className="flex flex-col gap-1.5">
@@ -49,7 +49,7 @@ export default function ResetPasswordPage() {
                         type="password"
                         placeholder="Your new password"
                         value={newPassword}
-                        className="auth-input"
+                        className="input-base"
                         onChange={(e) => setNewPassword(e.target.value)}
                     />
 
@@ -58,7 +58,7 @@ export default function ResetPasswordPage() {
                         type="password"
                         placeholder="Confirm password"
                         value={confirmPassword}
-                        className="auth-input"
+                        className="input-base"
                         onChange={(e) => setConfirmPassword(e.target.value)}
                     />
                 </div>

@@ -31,15 +31,15 @@ export default function LoginPage() {
     return (
         <div className="auth-page">
             {/* Auth Card */}
-            <div className="auth-card">
+            <div className="card auth-card">
                 
                 {/* OAuth Buttons (Future Addition)
                     <div className="flex flex-col gap-3">
-                    <button className="oauth-btn">
+                    <button className="btn btn-ghost btn-pill oauth-btn">
                         <span className="text-base">⌘</span>
                         Sign in with Github
                     </button>
-                    <button className="oauth-btn">
+                    <button className="btn btn-ghost btn-pill oauth-btn">
                         <span className="text-base font-bold text-blue-500">G</span>
                         Sign in with Google
                     </button>
@@ -55,7 +55,7 @@ export default function LoginPage() {
                         type="email"
                         placeholder="Your email address"
                         value={email}
-                        className="auth-input"
+                        className="input-base"
                         onChange={(e) => setEmail(e.target.value)}
                     />
                 </div>
@@ -67,14 +67,14 @@ export default function LoginPage() {
                         type="password"
                         placeholder="Your password"
                         value={password}
-                        className="auth-input"
+                        className="input-base"
                         onChange={(e) => setPassword(e.target.value)}
                     />
                 </div>
         
                 <button 
                     type="button"
-                    className="auth-btn"
+                    className="btn btn-primary btn-lg btn-pill auth-btn"
                     onClick={handleLogin}
                 >
                     Sign in
