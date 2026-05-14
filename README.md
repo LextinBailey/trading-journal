@@ -1,107 +1,162 @@
 # Trading Journal
 
-A simple web-based trading journal designed to help traders track, review, and improve their performance over time.
+![Dashboard](./screenshots/Dashboard.png)
+
+A full-stack trading journal application built with Next.js, Supabase, and PostgreSQL.
+
+Designed to help traders track performance, review trade history, and analyze trading consistency through authenticated user-specific dashboards and analytics.
 
 ## 📝 Overview
 
-Trading Journal is an MVP project focused on building a personal trade tracking system with user authentication and basic performance analytics.
-The goal is to create a foundation that can later expand into a more advanced trading analytics platform.
+Trading Journal is an MVP SaaS-style application focused on:
+- authenticated user workflows
+- secure user-isolated trade storage
+- server-side rendering & protected routes
+- analytics derivation
+- scalable application architecture using the Next.js App Router
 
-This project is being built to strengthen backend, full-stack architecture, and data modeling skills while creating something useful for personal trading review.
+The project emphasizes clean architecture, reusable business logic, and modern full-stack development patterns.
 
-## 🎯 Features (MVP)
+## 🔥 Features
 
 ### Authentication
 
-- [x] Secure user sign-up and login
-- [x] Each user has isolated trade data
+- Secure email/password authentication
+- Protected application routes
+- Password reset flow
+- Session-based authentication using Supabase Auth
 
 ### Trade Management
 
-- [x] Add new trades with details such as:
-    - Entry/exit info (basic)
-    - Win/Loss status
-    - Profit & Loss (PNL)
-    - Notes
+- Create trades
+- Edit existing trades
+- Delete trades
+- User-isolated trade data using PostgreSQL Row Level Security (RLS)
 
-### Trade History
+### Analytics
 
-- [x] View all past trades in a structured list
+- Total PNL
+- Win rate
+- Total trades
+- Cumulative PNL visualization using Recharts
 
-### Basic Statistics
+### User Experience
 
-- [x] Win rate
-- [x] Total PNL
+- Reponsive mobile-friendly layouts
+- Shared reusable form architecture
+- Loading states and validation
+- Structured dashboard layout
 
-## 📊 Databse Schema
-
-### trades table
-
-- id (uuid, primary key)
-- user_id (uuid, required)
-- pnl (float8, required)
-- result (text, required)
-- notes (text, optional)
-- mistake (text, optional)
-- created_at (timestamp, default now())
-
-### RLS Policies
-
-- INSERT: `auth.id() = user_id`
-- SELECT: `auth.id() = user_id`
-
-## 💻 Tech Stack (Planned)
+## 💻 Tech Stack
 
 ### Frontend
 
-- Framework: Next.js
-- Language: TypeScript
-- Styling: Tailwind CSS
+- Next.js (App Router)
+- TypeScript
+- Tailwind CSS
 
 ### Backend
 
-- API Layer: Next.js API Routes
+- Next.js Server Components + Route Handlers
+- Supabase SSR Authentication
 
-### Database + Auth + Storage
+### Database/Auth
 
-- Platform: Supabase
-- Database: PostgreSQL
-- Authentication: Supabase Auth (email/password, session-based auth)
-- Storage: Supabase Storage (planned for future image uploads)
+- Supabase
+- PostgreSQL
+- Row Level Security (RLS)
 
-### Hosting/Deployment
+### Charts
 
-- Frontend + Backend: Vercel (auto-deploy from GitHub)
-- Database + Auth: Supabase
+- Recharts
 
-### Data Fetching/State Management
+### Deployment
 
-- Built-in React + Next.js data fetching (no external state library for MVP)
+- Vercel
+- Supabase
 
-### Charts/Analytics:
+## 🔐 Database Schema
 
-- Library: Recharts
+### `trades`
 
-### Dev Tools:
+- id | uuid | Primary Key
+- user_id | uuid | Trade owner
+- pnl | float8 | Required
+- result | text | win/loss
+- notes | text | Optional
+- mistake | text | Optional
+- created_at | timestamp | Default `now()`
 
-- Code Editor: VS Code
-- Version Control: Git + GitHub
+### RLS Policies
+
+- INSERT: users can insert their own trades
+- SELECT: users can view their own trades
+- UPDATE: users can update their own trades
+- DELETE: users can delete their own trades
+
+## 🏗️ Architecture Highlights
+
+### Authentication & Route Protection
+
+- Uses Supabase Auth with server-side session validation
+- Protected application routes are centralized throught the `(app)` layout
+- Unauthenticated users are redirected before protected pages render
+
+### Data Security
+
+- Trade ownership is enforced using PostgreSQL Row Level Security (RLS)
+- Users can only create, view, update, and delete their own trades
+
+### Server/Client Separation
+
+- Server Components handle authenticated data fetching and analytics derivation
+- Client Components manage interactive UI concerns such as forms and charts
+
+### Shared Business Logic
+
+- Trade analytics are centralized into reusable utility modules
+- Derived statistics and cumulative PNL calculations are separated from presentation components
+
+### Scalable App Router Structure
+
+- Route groups separate:
+    - marketing pages
+    - authentication flows
+    - protected application routes
+
+### Responsive UI System
+
+- Shared reusable card, button, and form architecture
+- Mobile-responsive layouts using centralized global styling
+
+## 📁 Project Structure
+
+```
+src/
+├── app/
+│   ├── (app)/
+│   ├── (auth)/
+│   └── (marketing)/
+├── components/
+├── features/
+├── lib/
+└── types/
+```
 
 ## 📈 Development Notes
 
 Progress and development insights are tracked in `progress-log.md`.
 
-## ⏱️ Future Improvements (Post-MVP)
+## 🚧 Future Improvements
 
-- Mistake tracking (dropdown + custom input)
-- Backtesting section
-- Prop firm tracker
-- Chart uploads
-- AI insights
-- Trade rules reminder (pre-session)
 - Trade tagging & filtering
-- Strategy comparison
+- Strategy analytics
+- Chart uploads
+- Mistake categorization
+- AI-generated trade insights
+- Backtesting tools
+- Propfirm tracker
 
-## 🚧 Status
+## 🚀 Status
 
-In active development (MVP stage)
+MVP nearing deployment.

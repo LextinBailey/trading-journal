@@ -1,6 +1,6 @@
 # Progress Log
 
-A day-by-day log of development decisions, features, and design evolution.
+A chronological log of application architecture decisions, feature implementation, and UI evolution.
 
 ## Day 1 (May 5, 2026): Initial Setup, Supabase Setup, Auth Pages, Table + RLS Policies
 
@@ -15,18 +15,18 @@ A day-by-day log of development decisions, features, and design evolution.
     - `lib/`: Core utilities
     - `types/`: All Typescript types
     - `features/`: Feature-based logic
-- Setup Supabase scaffold
+- Initialized Supabase project integration
 - Installed Supabase Auth helpers for session management
 - Created Supabase browser client
 - Created basic auth pages (`signup`, `login`)
-    - Tested and ensured database users updated
+    - Verified authenticated users were persisted correctly
 - Created a `trades` table
 - Added 2 RLS policies to the `trades` table
     - INSERT
         - Users can insert their own trades
     - SELECT
         - Users can view their own trades
-    - Enforcing rules at the database level
+    - Enforced ownership constraints at the database layer
 
 ## Day 2 (May 6, 2026): Trade Insertion, Trade Fetch + Display, Statistics, Landing Page
 
@@ -35,9 +35,9 @@ A day-by-day log of development decisions, features, and design evolution.
     - Inserts trade into PostgreSQL with `user_id` attached
     - Enforced ownership using Row Level Security (RLS)
 - Defined `Trade` type
-- Implemented full read pipeline:
+- Implemented authenticated trade retrieval pipeline:
     - Relies on RLS instead of filtering
-    - Retrieves users trades from PostgreSQL database
+    - Retrieves user-specific trades from PostgreSQL database
     - Updates `trades` state
 - Derived `totalPnl` & `winRate` data from `trades` state
 - Added landing page with navigation to `/auth/login` and `/auth/signup`
@@ -51,18 +51,15 @@ A day-by-day log of development decisions, features, and design evolution.
     - Implemented `createServerClientClient()` wrapper using `@supabase/ssr`
     - Integrated `cookies()` from `next/headers` for session handling
     - Configured cookie `getAll` and `setAll` methods for SSR authentication flow
-- Separated client vs server Supabase responsibilites
+- Separated client vs server Supabase responsibilities
     - Browser client handles authentication across (login/signup, client-side requests)
     - Server client handles secure session validation and protected route access
-- Improved understanding of Next.js App Router execution model
-    - Differentiated between client-side rendering lifecycle vs server-side pre-render checks
-    - Applied server-side redirect logic to prevent unauthorized dashboard access
 - Implemented server-side data fetching in `/dashboard`
     - Fetched `trades` data before page render
     - Used data-level security (RLS) to retrieve users trades only
 - Added backend-derived analytics layer `/lib/stats/trades.ts`
     - Implemented reusable business logic module
-    - Replaced client-side data architecture with server-side (scalable & secure)
+    - Centralized analytics derivation into reusable server-side business logic modules
 - Improved login/signup pages & routed correctly
 - Implemented forgot password flow using Supabase Auth
     - Created `/auth/forgot-password` page
@@ -78,7 +75,7 @@ A day-by-day log of development decisions, features, and design evolution.
 ## Day 4 (May 8, 2026): Cumulative PNL
 
 - Added cumulative PNL business logic layer (`/lib/stats/trade-pnl.ts`)
-    - Implemented transformation pipeline for chart-ready anayltics data
+    - Implemented transformation pipeline for chart-ready analytics data
     - Sorted trades chronologically using `created_at`
     - Calculated running/cumulative PNL values across trade history
     - Generated visualization-friendly data structure for Recharts integration
@@ -86,7 +83,7 @@ A day-by-day log of development decisions, features, and design evolution.
     - Defined reusable chart data contract
     - Shared type across business logic and frontend visualization layer
     - Improved type safety for chart rendering pipeline
-- Began chart visualization architecture
+- Implemented chart visualization pipeline
     - Separated server-side analytics generation from client-side chart rendering
     - Passed derived chart data into dedicated client chart component via props
     - Continued enforcing separation between business logic and presentation layer
@@ -101,7 +98,7 @@ A day-by-day log of development decisions, features, and design evolution.
     - Integrated `ResponsiveContainer` for adaptive chart sizing
     - Separated layout sizing responsibilities from chart rendering logic
 
-## Day 6 (May 10, 2026): App Router Route Groups & Application Structure Refactor, Centralized Auth Protection, Side Bar
+## Day 6 (May 10, 2026): App Router Route Groups & Application Structure Refactor, Centralized Auth Protection, Sidebar
 
 - Refactored Next.js App Router structure using route groups
     - Added:
@@ -119,7 +116,7 @@ A day-by-day log of development decisions, features, and design evolution.
     - Centralized login/signup/password recovery route organization
 - Moved dashboard and trade routes into `(app)` group
     - Established foundation for shared authentication layouts and protected application routing
-- Began transition toward scalable SaaS-style application structure using Next.js App Router conventions
+- Established scalable SaaS-style route architecture using Next.js App Router conventions
 - Centralized auth protection inside `src/app/(app)/layout.tsx`
     - Prevented repeat auth checks
     - Established shared authenticated layout system
@@ -147,12 +144,10 @@ A day-by-day log of development decisions, features, and design evolution.
 - Added dynamic trade detail route `src/app/(app)/trades/[id]/page.tsx`
     - Implemented dynamic App Router route segment `[id]`
     - Retrieved individual trades using parameterized route-based querying
-    - Enforced user-level data access through existing Supabse RLS policies
+    - Enforced user-level data access through existing Supabase RLS policies
     - Added trade detail visualization layer for individual trade inspection
     - Added `View` navigation flow from trades table
-- Improved understanding of modern Next.js Server Component architecture
-    - Learned that `params` is now asynchronous in newer App Router implementations
-    - Updated dynamic route handling using awaited `params` access pattern
+- Updated dynamic route handling to support asynchronous `params` access pattern in newer App Router implementations
 - Added UPDATE RLS policy to the `trades` table
     - Users can update their own trades
 - Added edit trade route `src/app/(app)/trades/[id]/edit/page.tsx`
@@ -161,25 +156,25 @@ A day-by-day log of development decisions, features, and design evolution.
     - Added database update flow using Supabase `.update()`
     - Reused shared create/edit form architecture to reduce duplication and improve maintainability
 
-## Day 8 (May 12, 2026): DELETE, Frontend Validation, Trade Page UI
+## Day 8 (May 12, 2026): Trade Deletion, Frontend Validation, Trade Page UI
 
 - Added DELETE RLS policy to the `trades` table
     - Users can delete their own trades
 - Added delete button component `src/features/trades/components/delete-button.tsx`
     - Separated server and client component responsibilites
     - Implemented confirmation and local loading state
-- Implemented loading state to 'Add' and 'Update'
+- Added loading states for trade creation and update workflows
 - Implemented frontend input validation
     - Added required field checks
     - Added basic type validation
-- Improved all trade pages UI
+- Refined trade page layouts and visual consistency across CRUD workflows
 
 ## Day 9 (May 13, 2026): Stats Chart
 
 - Redesigned `stats-charts.tsx`
     - Added clear trade and profit separation
     - Added US dollar profit amounts 
-    - Implemented visual cumulative pnl
+    - Improved cumulative PNL data visualization
 
 ## Day 10 (May 14, 2026): Mobile Responsiveness, Profile Page
 
@@ -188,7 +183,7 @@ A day-by-day log of development decisions, features, and design evolution.
     - Improved mobile card sizing and page padding
     - Improved mobile button sizing and interaction areas
     - Improved responsive dashboard and auth page layouts
-    - Tested responsive behavior across desktop and mobile enviroments
+    - Tested responsive behavior across desktop and mobile environments
 - Added authenticated profile page `src/app/(app)/profile/page.tsx`
     - Implemented server-side authenticated user retrieval using Supabase Auth
     - Displayed authenticated user account information
