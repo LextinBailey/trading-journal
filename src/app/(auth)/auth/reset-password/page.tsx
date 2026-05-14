@@ -12,7 +12,11 @@ export default function ResetPasswordPage() {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
 
-    async function handleReset() {
+    async function handleReset(
+        e: React.FormEvent<HTMLFormElement>
+    ) {
+        e.preventDefault();
+
         setErrorMessage("");
 
         if (newPassword !== confirmPassword) {
@@ -42,35 +46,36 @@ export default function ResetPasswordPage() {
             {/* Auth Card */}
             <div className="card auth-card">
                 
-                {/* Email */}
-                <div className="flex flex-col gap-1.5">
-                    <label className="field-label">New password</label>
-                    <input
-                        type="password"
-                        placeholder="Your new password"
-                        value={newPassword}
-                        className="input-base"
-                        onChange={(e) => setNewPassword(e.target.value)}
-                    />
+                <form onSubmit={handleReset} className="flex flex-col gap-6">
+                    {/* Email */}
+                    <div className="flex flex-col gap-1.5">
+                        <label className="field-label">New password</label>
+                        <input
+                            type="password"
+                            placeholder="Your new password"
+                            value={newPassword}
+                            className="input-base"
+                            onChange={(e) => setNewPassword(e.target.value)}
+                        />
 
-                    <label className="field-label">Confirm password</label>
-                    <input
-                        type="password"
-                        placeholder="Confirm password"
-                        value={confirmPassword}
-                        className="input-base"
-                        onChange={(e) => setConfirmPassword(e.target.value)}
-                    />
-                </div>
-        
-                <button 
-                    type="button"
-                    className="auth-btn"
-                    onClick={handleReset}
-                >
-                    Reset password
-                </button>
-
+                        <label className="field-label">Confirm password</label>
+                        <input
+                            type="password"
+                            placeholder="Confirm password"
+                            value={confirmPassword}
+                            className="input-base"
+                            onChange={(e) => setConfirmPassword(e.target.value)}
+                        />
+                    </div>
+            
+                    <button 
+                        type="submit"
+                        className="btn btn-primary btn-lg btn-pill auth-btn"
+                    >
+                        Reset password
+                    </button>
+                </form>
+                
                 {errorMessage && (
                     <p className="flex flex-col items-center message">{errorMessage}</p>
                 )}

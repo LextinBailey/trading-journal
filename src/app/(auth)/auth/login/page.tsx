@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase/client";
 import Link from "next/link";
@@ -12,7 +12,11 @@ export default function LoginPage() {
     const [password, setPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
 
-    async function handleLogin() {
+    async function handleLogin(
+        e: React.FormEvent<HTMLFormElement>
+    ) {
+        e.preventDefault();
+
         setErrorMessage("");
 
         const { error } = await supabase.auth.signInWithPassword({
@@ -48,37 +52,43 @@ export default function LoginPage() {
                     <hr className="auth-divider" />
                 */}
                 
-                {/* Email */}
-                <div className="flex flex-col gap-1.5">
-                    <label className="field-label">Email address</label>
-                    <input
-                        type="email"
-                        placeholder="Your email address"
-                        value={email}
-                        className="input-base"
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                </div>
-        
-                {/* Password */}
-                <div className="flex flex-col gap-1.5">
-                    <label className="field-label">Your password</label>
-                    <input
-                        type="password"
-                        placeholder="Your password"
-                        value={password}
-                        className="input-base"
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                </div>
-        
-                <button 
-                    type="button"
-                    className="btn btn-primary btn-lg btn-pill auth-btn"
-                    onClick={handleLogin}
-                >
-                    Sign in
-                </button>
+                <form onSubmit={handleLogin} className="flex flex-col gap-6">
+                    {/* Email */}
+                    <div className="flex flex-col gap-1.5">
+                        <label className="field-label">Email address</label>
+                        <input
+                            name="email"
+                            type="email"
+                            placeholder="Your email address"
+                            autoComplete="email"
+                            value={email}
+                            className="input-base"
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
+                    </div>
+            
+                    {/* Password */}
+                    <div className="flex flex-col gap-1.5">
+                        <label className="field-label">Your password</label>
+                        <input
+                            name="password"
+                            type="password"
+                            placeholder="Your password"
+                            autoComplete="current-password"
+                            value={password}
+                            className="input-base"
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                    </div>
+            
+                    <button 
+                        type="submit"
+                        className="btn btn-primary btn-lg btn-pill auth-btn"
+                    >
+                        Sign in
+                    </button>
+                </form>
+                
 
                 {errorMessage && (
                     <p className="flex flex-col items-center message">{errorMessage}</p>

@@ -54,7 +54,7 @@ export default function StatsChart({ chartData }: StatsChartProps) {
             </div>
 
             {/* Chart */}
-            <div className="h-56 w-full">
+            <div style={{ width: "100%", height: 224, minWidth: 0}}>
                 <ResponsiveContainer width="100%" height="100%">
                     <AreaChart data={chartData} margin={{ top: 8, right: 0, left: 0, bottom: 0 }}>
                         <defs>

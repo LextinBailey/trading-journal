@@ -12,7 +12,11 @@ export default function SignUpPage() {
     const [password, setPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
 
-    async function handleSignUp() {
+    async function handleSignUp(
+        e: React.FormEvent<HTMLFormElement>
+    ) {
+        e.preventDefault();
+
         setErrorMessage("");
 
         if (password.length < 8) {
@@ -37,38 +41,40 @@ export default function SignUpPage() {
         <div className="auth-page">
             {/* Auth Card */}
             <div className="card auth-card">   
-                {/* Email */}
-                <div className="flex flex-col gap-1.5">
-                    <label className="field-label">Email address</label>
-                    <input
-                        type="email"
-                        placeholder="Your email address"
-                        value={email}
-                        className="input-base"
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                </div>
-        
-                {/* Password */}
-                <div className="flex flex-col gap-1.5">
-                    <label className="field-label">Create a password</label>
-                    <input
-                        type="password"
-                        placeholder="Your password"
-                        value={password}
-                        className="input-base"
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                </div>
-        
-                <button 
-                    type="button"
-                    className="btn btn-primary btn-lg btn-pill auth-btn"
-                    onClick={handleSignUp}
-                >
-                    Sign up
-                </button>
 
+                <form onSubmit={handleSignUp} className="flex flex-col gap-6">
+                    {/* Email */}
+                    <div className="flex flex-col gap-1.5">
+                        <label className="field-label">Email address</label>
+                        <input
+                            type="email"
+                            placeholder="Your email address"
+                            value={email}
+                            className="input-base"
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
+                    </div>
+            
+                    {/* Password */}
+                    <div className="flex flex-col gap-1.5">
+                        <label className="field-label">Create a password</label>
+                        <input
+                            type="password"
+                            placeholder="Your password"
+                            value={password}
+                            className="input-base"
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                    </div>
+            
+                    <button 
+                        type="submit"
+                        className="btn btn-primary btn-lg btn-pill auth-btn"
+                    >
+                        Sign up
+                    </button>
+                </form>
+                
                 {errorMessage && (
                     <p className="flex flex-col items-center message">{errorMessage}</p>
                 )}

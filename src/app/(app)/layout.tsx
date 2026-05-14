@@ -1,6 +1,8 @@
 import { redirect } from "next/navigation";
 import { createServerClientClient } from "@/lib/supabase/server";
 import Sidebar from "@/components/navigation/sidebar";
+import MobileTopBar from "@/components/navigation/mobile-topbar"
+import { SidebarProvider } from "@/components/navigation/sidebar-context";
 
 export default async function AppLayout({
     children,
@@ -18,12 +20,16 @@ export default async function AppLayout({
     }
 
     return (
-        <div className="app-layout">
-            <Sidebar />
-
-            <main className="app-content">
-                {children}
-            </main>
-        </div>
+        <SidebarProvider>
+            <div className="app-layout">
+                <Sidebar />
+                <div className="app-body">
+                    <MobileTopBar />
+                    <main className="app-content">
+                        {children}
+                    </main>
+                </div>
+            </div>
+        </SidebarProvider>
     );
 }
