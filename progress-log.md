@@ -181,7 +181,7 @@ A day-by-day log of development decisions, features, and design evolution.
     - Added US dollar profit amounts 
     - Implemented visual cumulative pnl
 
-## Day 10 (May 14, 2026): Mobile Responsiveness
+## Day 10 (May 14, 2026): Mobile Responsiveness, Profile Page
 
 - Added mobile responsiveness improvements across application
     - Refined responsive spacing and layout behavior
@@ -189,3 +189,13 @@ A day-by-day log of development decisions, features, and design evolution.
     - Improved mobile button sizing and interaction areas
     - Improved responsive dashboard and auth page layouts
     - Tested responsive behavior across desktop and mobile enviroments
+- Added authenticated profile page `src/app/(app)/profile/page.tsx`
+    - Implemented server-side authenticated user retrieval using Supabase Auth
+    - Displayed authenticated user account information
+    - Reused shared application card and layout architecture for UI consistency
+    - Continued centralized route protection through `(app)` layout authentication guard
+- Added reusable logout button component `src/components/logout-button.tsx`
+    - Implemented client-side logout flow using `supabase.auth.signOut()`
+    - Redirects users back to landing page after logout
+    - Refreshes application state after session termination
+    - Established reusable authentication action component architecture
