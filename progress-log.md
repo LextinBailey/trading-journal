@@ -210,3 +210,14 @@ A chronological log of application architecture decisions, feature implementatio
 - Established production-ready deployment workflow
     - Enabled continuous deployment throuhg GitHub -> Vercel integration
     - Standardized production deployment and update pipeline for future iterations
+
+## 🧠 Key Takeaways
+
+- Server-side authentication and route protection provide a cleaner and more secure application architecture than relying entirely on client-side checks
+- PostgreSQL Row Level Security (RLS) allows data ownership and authorization rules to be enforced directly at the database layer
+- Separating business logic, presentation components, and data-fetching responsibilities improves scalability and maintainability
+- Reusable component and form architecture significantly reduces duplication across CRUD workflows
+- Next.js App Router route groups help organize large applications by separating marketing, authentication, and protected application concerns
+- Derived analytics are more scalable and consistent when centralized into reusable server-side utility modules
+- Production deployment requires environment-aware configuration rather than hardcoded local development values
+- Responsive UI refinement and interaction states are essential parts of building production-ready applications, not post-development additions

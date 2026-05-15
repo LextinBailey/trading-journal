@@ -1,6 +1,6 @@
 # Trading Journal
 
-![Dashboard](./screenshots/dashboard.png)
+![Dashboard](./screenshots/dashboard-view.png)
 
 A full-stack trading journal application built with Next.js, Supabase, and PostgreSQL.
 
@@ -66,7 +66,7 @@ Create and manage trades through a reusable form architecture with validation, l
 ### Mobile Trade Experience
 
 Responsive mobile layouts optimize trade management and analytics visibility across smaller screen sizes while maintaining consistent application structure and usability.
-![Mobile Trades](./screenshots/mobile-trades.png)
+![Mobile Trades](./screenshots/mobile-trades.jpg)
 
 ## 💻 Tech Stack
 
