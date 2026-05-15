@@ -1,6 +1,6 @@
 # Trading Journal
 
-![Dashboard](./screenshots/Dashboard.png)
+![Dashboard](./screenshots/dashboard.png)
 
 A full-stack trading journal application built with Next.js, Supabase, and PostgreSQL.
 
@@ -16,6 +16,10 @@ Trading Journal is an MVP SaaS-style application focused on:
 - scalable application architecture using the Next.js App Router
 
 The project emphasizes clean architecture, reusable business logic, and modern full-stack development patterns.
+
+## 🚀 Live Demo
+
+- Frontend: https://trading-journal-rho-inky.vercel.app
 
 ## 🔥 Features
 
@@ -47,6 +51,23 @@ The project emphasizes clean architecture, reusable business logic, and modern f
 - Loading states and validation
 - Structured dashboard layout
 
+## 📸 Screenshots
+
+### Trades Page
+
+View complete trade history alongside options to add, edit, and view each trade in more detail.
+![Trades Page](./screenshots/trades-page.png)
+
+### New Trade Workflow
+
+Create and manage trades through a reusable form architecture with validation, loading states, and authenticated user-specific data handling.
+![New Trade](./screenshots/new-trade.png)
+
+### Mobile Trade Experience
+
+Responsive mobile layouts optimize trade management and analytics visibility across smaller screen sizes while maintaining consistent application structure and usability.
+![Mobile Trades](./screenshots/mobile-trades.png)
+
 ## 💻 Tech Stack
 
 ### Frontend
@@ -74,6 +95,45 @@ The project emphasizes clean architecture, reusable business logic, and modern f
 
 - Vercel
 - Supabase
+
+## 🛠️ Getting Started (Local Development)
+
+### 1. Clone the Repository
+
+```
+git clone https://github.com/LextinBailey/trading-journal.git
+cd trading-journal
+```
+
+### 2. Install Dependencies
+
+```
+npm install
+```
+
+### 3. Configure Environment Variables
+
+Create a `.env.local` file in the project root:
+```
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+```
+You can retrieve these values from:
+- Supabase Dashboard
+- Project Settings
+- API
+
+### 4. Start the Development Server
+
+```
+npm run dev
+```
+Application will be available at: `http://localhost:3000`
+
+## 🔒 Environment Variables
+
+- `NEXT_PUBLIC_SUPABASE_URL`: Supabase project URL
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY`: Public Supabase anonymous API key
 
 ## 🔐 Database Schema
 
@@ -156,7 +216,3 @@ Progress and development insights are tracked in `progress-log.md`.
 - AI-generated trade insights
 - Backtesting tools
 - Propfirm tracker
-
-## 🚀 Status
-
-MVP nearing deployment.
