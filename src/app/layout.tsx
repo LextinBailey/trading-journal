@@ -19,7 +19,7 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: "Trading Journal",
-  description: "Track your trades. Improve your decisions.",
+  description: "Trading Journal App.",
 };
 
 export default function RootLayout({
